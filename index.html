@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Market & Pay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="screen active">
+        <div class="auth-card">
+            <h2>Welcome to Nexus</h2>
+            <p>Login with your email to continue</p>
+            <form id="login-form">
+                <input type="email" id="auth-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-primary">Access Marketplace</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application Wrapper -->
+    <div id="app-wrapper" class="screen">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="logo">Nexus<span>.</span></div>
+            <div class="nav-user">
+                <span id="user-display"></span>
+                <button id="logout-btn" class="btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Content Layout -->
+        <div class="container">
+            <!-- Left: Market & Orders -->
+            <main class="main-content">
+                <!-- Dynamic Promo Banner -->
+                <div class="promo-banner animate-pulse">
+                    <div class="banner-badge">🔥 FLASH SALE</div>
+                    <div class="banner-text">
+                        <h3>Weekend Mega Deal!</h3>
+                        <p>Get up to 5% Cash-Back on all Airtel Money & Bank payments.</p>
+                    </div>
+                    <div id="countdown" class="countdown-timer">03:59:59</div>
+                </div>
+
+                <!-- Search & Filter Hub -->
+                <div class="filter-hub">
+                    <input type="text" id="search-bar" placeholder="🔍 Search products...">
+                    <div class="tag-container">
+                        <button class="tag active" data-category="all">All Items</button>
+                        <button class="tag" data-category="electronics">Electronics</button>
+                        <button class="tag" data-category="fashion">Fashion</button>
+                    </div>
+                </div>
+
+                <!-- Customer Reward Tracker -->
+                <div class="reward-ribbon">
+                    <span>⭐ Your Reward Wallet: <strong id="reward-points">120</strong> Points</span>
+                    <span class="reward-tip">(Earn points with every transaction)</span>
+                </div>
+
+                <!-- Enhanced Products Grid -->
+                <section class="section">
+                    <h2>Trending Catalog</h2>
+                    <div id="products-grid" class="grid">
+                        <!-- Enhanced Dynamic Products Go Here -->
+                    </div>
+                </section>
+            </main>
+
+            <!-- Right: Admin & Management Sidebar -->
+            <aside class="sidebar">
+                <section class="section admin-panel">
+                    <h3>Merchant Console</h3>
+                    <p class="subtitle">Add or manage inventory</p>
+                    <form id="add-product-form">
+                        <input type="text" id="prod-title" placeholder="Product Name" required>
+                        <input type="number" id="prod-price" placeholder="Price (UGX)" required>
+                        <input type="url" id="prod-image" placeholder="Image URL (Unsplash/Valid Link)" required>
+                        <button type="submit" class="btn-success">Publish Product</button>
+                    </form>
+                </section>
+                
+                <section class="section active-orders">
+                    <h3>Your Orders</h3>
+                    <div id="cart-status">Your cart is empty. Select a product to order.</div>
+                    <div id="checkout-summary" class="hidden">
+                        <p>Total Due: <strong id="total-amount">0</strong></p>
+                        <button id="pay-now-btn" class="btn-primary">Proceed to Payment</button>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Transaction Modal (Mobile Money & Bank Channels) -->
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Select Payment Gateway</h2>
+            <p>Secure multi-channel checkout</p>
+            
+            <div class="payment-channels">
+                <button class="channel-btn active" data-channel="momo">Mobile Money</button>
+                <button class="channel-btn" data-channel="bank">Bank Transfer</button>
+            </div>
+
+            <!-- Mobile Money Form -->
+            <form id="momo-form" class="payment-form">
+                <div class="input-group">
+                    <label>Provider</label>
+                    <select id="momo-provider">
+                        <option value="mtn">MTN MoMo</option>
+                        <option value="airtel">Airtel Money</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="e.g., 0770000000" required>
+                </div>
+                <button type="submit" class="btn-primary w-100">Authorize MoMo Payment</button>
+            </form>
+
+            <!-- Bank Form -->
+            <form id="bank-form" class="payment-form hidden">
+                <div class="input-group">
+                    <label>Choose Bank</label>
+                    <select id="bank-name">
+                        <option value="stanbic">Stanbic Bank</option>
+                        <option value="centenary">Centenary Bank</option>
+                        <option value="dfcu">DFCU Bank</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Account Number</label>
+                    <input type="text" placeholder="Enter account number" required>
+                </div>
+                <button type="submit" class="btn-primary w-100">Process Bank Wire</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
